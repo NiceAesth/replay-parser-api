@@ -53,7 +53,7 @@ def parseReplay():
     replay = parse_replay(byte_string)
  
     response = {
-        'beatmap_hash': replay.replay_hash,
+        'beatmap_hash': replay.beatmap_hash,
         'replay_hash': replay.replay_hash,
         'score': replay.score,
         'gekis': replay.gekis,
