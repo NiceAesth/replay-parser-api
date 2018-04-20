@@ -70,4 +70,4 @@ def parseReplay():
     return json.dumps(response)
  
  
-run(reLoader=True, debug=True, port=int(os.environ.get('PORT', 17995)))
+run(reLoader=True, debug=True, host='https://replay-parser-api.herokuapp.com', port=int(os.environ.get('PORT', 17995)))
