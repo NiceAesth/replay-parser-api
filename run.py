@@ -1,3 +1,4 @@
+import gevent.monkey; gevent.monkey.patch_all()
 from bottle import run, post, request
 from osrparse import parse_replay
 import base64
