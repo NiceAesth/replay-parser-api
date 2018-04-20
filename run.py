@@ -3,6 +3,7 @@ from osrparse import parse_replay
 import base64
 import codecs
 import json
+import os
  
 def hexToStr(hex):
     if ord(hex) >= ord('a'):
@@ -69,4 +70,4 @@ def parseReplay():
     return json.dumps(response)
  
  
-run(reLoader=True, debug=True)
+run(reLoader=True, debug=True, port=int(os.environ.get('PORT', 17995)))
