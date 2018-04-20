@@ -47,9 +47,9 @@ def serializeMods(mods):
 @post('/replay')
 def parseReplay():
     byte_string = request.body.read()
-    print(byte_string)
+    #print(byte_string)
     byte_string = convert(byte_string.decode("ASCII"))
-    print(byte_string)
+    #print(byte_string)
     replay = parse_replay(byte_string)
  
     response = {
