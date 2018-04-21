@@ -44,9 +44,9 @@ def serializeMods(mods):
         result.append(mod.name)
     return result
  
- @route('/')
+@route('/')
  def index():
-     return 'Status: OK' 
+    return 'Status: OK' 
  
 @post('/replay')
 def parseReplay():
