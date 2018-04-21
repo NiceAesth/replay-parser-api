@@ -1,5 +1,5 @@
 import gevent.monkey; gevent.monkey.patch_all()
-from bottle import run, post, request
+from bottle import run, post, request, route
 from osrparse import parse_replay
 import base64
 import codecs
@@ -44,16 +44,20 @@ def serializeMods(mods):
         result.append(mod.name)
     return result
  
+ @route('/')
+ def index():
+     return 'Status: OK' 
+ 
 @post('/replay')
 def parseReplay():
     byte_string = request.body.read()
-    #print(byte_string)
+    print(byte_string)
     byte_string = convert(byte_string.decode("ASCII"))
-    #print(byte_string)
+    print(byte_string)
     replay = parse_replay(byte_string)
  
     response = {
-        'beatmap_hash': replay.beatmap_hash,
+        'beatmap_hash': replay.replay_hash,
         'replay_hash': replay.replay_hash,
         'score': replay.score,
         'gekis': replay.gekis,
