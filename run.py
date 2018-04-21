@@ -45,7 +45,7 @@ def serializeMods(mods):
     return result
  
 @route('/')
- def index():
+def index():
     return 'Status: OK' 
  
 @post('/replay')
