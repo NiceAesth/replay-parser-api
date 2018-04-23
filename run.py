@@ -72,9 +72,9 @@ def parseReplay():
         'player_name': replay.player_name,
         'mod_combination': serializeMods(replay.mod_combination)
     }
-    
+
     # Reverse katus and number_100s if on osu!mania due to API error
-    if response.gamemode == 3:
+    if response['gamemode'] == 3:
         response['katus'], response['number_100s'] = response['number_100s'], response['katus']
 
     return json.dumps(response)
