@@ -5,12 +5,12 @@ import base64
 import codecs
 import json
 import os
- 
+
 def hexToStr(hex):
     if ord(hex) >= ord('a'):
         return ord(hex) - ord('a') + 10
     return ord(hex) - ord('0')
- 
+
 def convert(s):
     new_str = b''
     i = 0
@@ -37,17 +37,17 @@ def convert(s):
             new_str += bytes([ord(s[i])])
         i += 1
     return new_str
- 
+
 def serializeMods(mods):
     result = []
     for mod in mods:
         result.append(mod.name)
     return result
- 
+
 @route('/')
 def index():
-    return 'Status: OK' 
- 
+    return 'Status: OK'
+
 @post('/replay')
 def parseReplay():
     byte_string = request.body.read()
@@ -55,10 +55,11 @@ def parseReplay():
     byte_string = convert(byte_string.decode("ASCII"))
     print(byte_string)
     replay = parse_replay(byte_string)
- 
+
     response = {
         'beatmap_hash': replay.replay_hash,
         'replay_hash': replay.replay_hash,
+        'gamemode': replay.game_mode.value,
         'score': replay.score,
         'gekis': replay.gekis,
         'katus': replay.katus,
@@ -71,8 +72,8 @@ def parseReplay():
         'player_name': replay.player_name,
         'mod_combination': serializeMods(replay.mod_combination)
     }
- 
+
     return json.dumps(response)
- 
- 
+
+
 run(server='gevent', port=int(os.environ.get('PORT', 5000)), host='0.0.0.0')
